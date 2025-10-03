@@ -1,0 +1,62 @@
+:root {
+  --heading-color: #5d45ed;
+  --button-color: #366ef4;
+  --sidebar-background: #efecf9;
+  --sidebar-link: #8d5eed;
+  --sidebar-font-color: #81868f;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.layout {
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+}
+.section-sidebar {
+  display: block;
+}
+
+.sidebar-hamburger {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .section-sidebar {
+    display: none;
+  }
+  .section-sidebar.open {
+    display: block;
+  }
+  .sidebar-hamburger {
+    display: inline-block;
+  }
+  .btn-sidebar {
+    display: inline-block;
+    position: absolute;
+    left: 15px;
+    top: 15px;
+  }
+  .btn-sidebar.open {
+      position: fixed;
+      left: 0;
+      width: 40px;
+      background: transparent;
+      color: white;
+      border: none;
+      top: -10px;
+      z-index: 999;
+  }
+  .btn.btn-sidebar:focus-visible {
+      box-shadow: none;
+  }
+  .btn.btn-sidebar:active {
+    color: white;
+    background-color:transparent ;
+  }
+  .btn-sidebar.open i {
+    font-size: 30px;
+  }
+}
