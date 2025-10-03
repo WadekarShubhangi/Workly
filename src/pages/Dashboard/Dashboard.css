@@ -1,0 +1,14 @@
+.card-elevated {
+  border: none;
+  background-color: #f8f9fa; /* ya bg-light */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 0.75rem; /* optional rounded corners */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-elevated:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+
