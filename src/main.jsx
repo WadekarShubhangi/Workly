@@ -7,6 +7,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { WorklyProvider } from "./contexts/worklyContext.jsx";
+
+import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import ProjectManagement from "./pages/Project/ProjectManagement.jsx";
 import CreateProjectModal from "./pages/Project/CreateProjectModal.jsx";
 import ProjectDetails from "./pages/Project/ProjectDetails.jsx";
@@ -22,26 +24,34 @@ import CreateTeamModal from "./pages/Team/CreateTeamModal.jsx";
 import TeamDetails from "./pages/Team/TeamDetails.jsx";
 import AddTeamMember from "./pages/Team/AddTeamMember.jsx"
 
-
 const router = createBrowserRouter([
-  { path: "/", element: <App /> },
-  { path: "/allProject", element: <ProjectManagement /> },
-  { path: "/ProjectDetails/:projectId", element: <ProjectDetails /> },
-  { path: "/createProject", element: <CreateProjectModal /> },
+  {
+    path: "/", 
+    element: <App />,
+    children: [
+      // Projects
+      { path: "dashboard", element: <Dashboard />},
+      { path: "allProject", element: <ProjectManagement /> },
+      { path: "ProjectDetails/:projectId", element: <ProjectDetails /> },
+      { path: "createProject", element: <CreateProjectModal /> },
 
-  { path: "/reports", element: <Report /> },
+      // Reports
+      { path: "reports", element: <Report /> },
 
-  { path: "/allTask", element: <TaskManagement /> },
-  { path: "/taskDetails/:taskId", element: <TaskDetails /> },
-  { path: "/createTask", element: <CreateTaskModal /> },
+      // Tasks
+      { path: "allTask", element: <TaskManagement /> },
+      { path: "taskDetails/:taskId", element: <TaskDetails /> },
+      { path: "createTask", element: <CreateTaskModal /> },
 
-
-  { path: "/allTeam", element: <TeamManagement /> },
-  { path: "/teamDetails/:teamId", element: <TeamDetails /> },
-  { path: "/addTeamMember", element: <AddTeamMember /> },
-  { path: "/createTeam", element: <CreateTeamModal /> },
-
+      // Teams
+      { path: "allTeam", element: <TeamManagement /> },
+      { path: "teamDetails/:teamId", element: <TeamDetails /> },
+      { path: "addTeamMember", element: <AddTeamMember /> },
+      { path: "createTeam", element: <CreateTeamModal /> },
+    ]
+  }
 ]);
+
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

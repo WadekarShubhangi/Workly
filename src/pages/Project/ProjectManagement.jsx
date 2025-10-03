@@ -1,6 +1,6 @@
 const ProjectManagement = () => {
     return(
-        <h1>Heading</h1>
+        <h1>Project</h1>
     )
 }
 export default ProjectManagement;

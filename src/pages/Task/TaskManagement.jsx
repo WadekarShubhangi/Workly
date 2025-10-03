@@ -1,6 +1,6 @@
 const TaskManagement = () => {
     return(
-        <h1>Heading</h1>
+        <h1>Task</h1>
     )
 }
 export default TaskManagement;
