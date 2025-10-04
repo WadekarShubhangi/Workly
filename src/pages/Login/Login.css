@@ -1,0 +1,24 @@
+.login-box {
+  width: 100%;
+  max-width: 400px;
+}
+
+.brand-text {
+  color: var(--heading-color);
+  font-weight: 700;
+}
+
+.btn-primary:hover {
+  background-color: var(--button-hover);
+}
+
+.btn-link{
+    padding-bottom: 0;
+}
+
+.btn-link:focus {
+  color: #000;
+}
+.toggle-login-text{
+    padding-top: 3px;
+}

@@ -8,6 +8,9 @@ import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { WorklyProvider } from "./contexts/worklyContext.jsx";
 
+import Login from "./pages/Login/Login.jsx";
+import Signup from "./pages/Signup/Signup.jsx";
+
 import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import ProjectManagement from "./pages/Project/ProjectManagement.jsx";
 import CreateProjectModal from "./pages/Project/CreateProjectModal.jsx";
@@ -22,15 +25,20 @@ import TaskDetails from "./pages/Task/TaskDetails.jsx";
 import TeamManagement from "./pages/Team/TeamManagement.jsx";
 import CreateTeamModal from "./pages/Team/CreateTeamModal.jsx";
 import TeamDetails from "./pages/Team/TeamDetails.jsx";
-import AddTeamMember from "./pages/Team/AddTeamMember.jsx"
+import AddTeamMember from "./pages/Team/AddTeamMember.jsx";
 
 const router = createBrowserRouter([
   {
-    path: "/", 
+    path: "/",
     element: <App />,
     children: [
+      // Login
+      { path: "login", element: <Login /> },
+      { path: "signup", element: <Signup /> },
+
+
       // Projects
-      { path: "dashboard", element: <Dashboard />},
+      { path: "dashboard", element: <Dashboard /> },
       { path: "allProject", element: <ProjectManagement /> },
       { path: "ProjectDetails/:projectId", element: <ProjectDetails /> },
       { path: "createProject", element: <CreateProjectModal /> },
@@ -48,10 +56,9 @@ const router = createBrowserRouter([
       { path: "teamDetails/:teamId", element: <TeamDetails /> },
       { path: "addTeamMember", element: <AddTeamMember /> },
       { path: "createTeam", element: <CreateTeamModal /> },
-    ]
-  }
+    ],
+  },
 ]);
-
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

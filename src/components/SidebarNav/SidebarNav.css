@@ -13,8 +13,8 @@
 }
 
 .sidebar .brand {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
   color: var(--heading-color);
 }
 
@@ -34,8 +34,12 @@
   .sidebar {
     width: auto;
     position: fixed;
-    opacity: 0.8;
+    opacity: 1;
     z-index: 999;
+  }
+
+  .sidebar .brand{
+    text-align: end;
   }
 
   .sidebar.open {

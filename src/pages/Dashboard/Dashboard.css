@@ -1,8 +1,8 @@
 .card-elevated {
   border: none;
-  background-color: #f8f9fa; /* ya bg-light */
+  background-color: #f8f9fa;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 0.75rem; /* optional rounded corners */
+  border-radius: 0.75rem; 
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -11,4 +11,9 @@
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
-
+.project-status-badge{
+      font-size: 14px;
+    padding: 5px 10px;
+    margin-bottom: 12px;
+    font-weight: 500;
+}

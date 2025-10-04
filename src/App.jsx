@@ -1,12 +1,24 @@
 import "./App.css";
-import LoginModel from "./components/LoginModel/LoginModel";
-import SignupModel from "./components/SignupModel/SignupModel";
 import SidebarNav from "./components/SidebarNav/SidebarNav";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import WorklyContext from "./contexts/worklyContext";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import { useNavigate } from "react-router-dom";
+import worklyLogo from "./assets/worklyLogo.jpeg"
 
 function App() {
+  const navigate = useNavigate();
+  const [token, setToken] = useState();
+  useEffect(() => {
+    setToken(localStorage.getItem("adminToken"));
+    if (!token) {
+      navigate("/login");
+    } else {
+      navigate("/dashboard");
+    }
+  }, [token, navigate]);
+
   const { closeSideBar, setCloseSideBar } = useContext(WorklyContext);
 
   return (
@@ -17,10 +29,10 @@ function App() {
         </aside>
 
         <section className="container mx-4">
-          <div className="my-3">
+          <div className="my-3 d-flex justify-content-between align-items-center">
             <span className="sidebar-hamburger">
               <button
-                className={`btn btn-light btn-sidebar ${
+                className={`btn btn-light btn-sidebar mx-4 ${
                   closeSideBar ? "open" : ""
                 }`}
                 onClick={() => setCloseSideBar(!closeSideBar)}
@@ -30,12 +42,11 @@ function App() {
                 ) : (
                   <i className="bi bi-list"></i>
                 )}
-              </button>
+              </button> 
             </span>
-
-            <Outlet />
+            <img className="d-block d-md-none" height={30} width={30} src={worklyLogo} alt="" />
           </div>
-          {/* Nested routes will render here */}
+           <Outlet />
         </section>
       </div>
     </div>

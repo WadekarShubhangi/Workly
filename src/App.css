@@ -4,12 +4,15 @@
   --sidebar-background: #efecf9;
   --sidebar-link: #8d5eed;
   --sidebar-font-color: #81868f;
+  --button-hover: #2f5dd1;
 }
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 .layout {
   display: flex;
   min-height: 100vh;
@@ -41,12 +44,12 @@
   }
   .btn-sidebar.open {
       position: fixed;
-      left: 0;
+      left: -24px;
       width: 40px;
       background: transparent;
-      color: white;
+      color: black;
       border: none;
-      top: -10px;
+      top: 15px;
       z-index: 999;
   }
   .btn.btn-sidebar:focus-visible {
@@ -57,6 +60,6 @@
     background-color:transparent ;
   }
   .btn-sidebar.open i {
-    font-size: 30px;
+    font-size: 35px;
   }
 }
