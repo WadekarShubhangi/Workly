@@ -1,23 +1,32 @@
 import "./App.css";
 import SidebarNav from "./components/SidebarNav/SidebarNav";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import WorklyContext from "./contexts/worklyContext";
 import { Outlet } from "react-router-dom";
 import Dashboard from "./pages/Dashboard/Dashboard";
-import { useNavigate } from "react-router-dom";
-import worklyLogo from "./assets/worklyLogo.jpeg"
+import { useNavigate, useLocation } from "react-router-dom";
+import worklyLogo from "./assets/worklyLogo.jpeg";
 
 function App() {
+  const { setToken } = useContext(WorklyContext);
   const navigate = useNavigate();
-  const [token, setToken] = useState();
+  const location = useLocation();
+
   useEffect(() => {
-    setToken(localStorage.getItem("adminToken"));
-    if (!token) {
+    const storedToken = localStorage.getItem("adminToken");
+    console.log(storedToken)
+    if (!storedToken) {
       navigate("/login");
+      setToken(null)
     } else {
-      navigate("/dashboard");
+      if (location.pathname === "/") {
+        navigate("/dashboard");
+      }else{
+        navigate(location)
+      }
+      setToken(storedToken)
     }
-  }, [token, navigate]);
+  }, [navigate, setToken]);
 
   const { closeSideBar, setCloseSideBar } = useContext(WorklyContext);
 
@@ -42,11 +51,17 @@ function App() {
                 ) : (
                   <i className="bi bi-list"></i>
                 )}
-              </button> 
+              </button>
             </span>
-            <img className="d-block d-md-none" height={30} width={30} src={worklyLogo} alt="" />
+            <img
+              className="d-block d-md-none"
+              height={30}
+              width={30}
+              src={worklyLogo}
+              alt="workly logo"
+            />
           </div>
-           <Outlet />
+          <Outlet />
         </section>
       </div>
     </div>

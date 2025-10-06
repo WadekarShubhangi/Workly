@@ -7,7 +7,7 @@ import WorklyContext from "../../contexts/worklyContext";
 import { Link } from "react-router-dom";
 
 const Signup = () => {
-  const { showPassword, setShowPassword, signupUser } = useContext(WorklyContext);
+  const { showPassword, setShowPassword, signupUser, signupData, signupHandleChange } = useContext(WorklyContext);
 
   return (
     <div className="d-flex justify-content-center">
@@ -23,18 +23,20 @@ const Signup = () => {
           <div className="mb-3">
             <label className="form-label fw-semibold">Username</label>
             <input
-              type="text"
+              type="text"  name="name" 
               placeholder="Enter your username"
-              className="form-control"
+              className="form-control"  value={signupData.name}
+                onChange={(e) => signupHandleChange(e)}
             />
           </div>
 
           <div className="mb-3">
             <label className="form-label fw-semibold">Email</label>
             <input
-              type="email"
+              type="email"  name="email" 
               placeholder="Enter your email"
-              className="form-control"
+              className="form-control" value={signupData.email}
+                onChange={(e) => signupHandleChange(e)}
             />
           </div>
 
@@ -42,8 +44,9 @@ const Signup = () => {
             <label className="form-label fw-semibold">Password</label>
             <input
               type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              className="form-control pe-5"
+              placeholder="Password"  name="password" 
+              className="form-control pe-5" value={signupData.password}
+                onChange={(e) => signupHandleChange(e)}
             />
             <button
               type="button"

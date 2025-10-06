@@ -3,7 +3,7 @@ import "./SidebarNav.css";
 import { useContext } from "react";
 import WorklyContext from "../../contexts/worklyContext";
 const SidebarNav = () => {
-  const { setCloseSideBar } = useContext(WorklyContext);
+  const { setCloseSideBar, token, logout} = useContext(WorklyContext);
   return (
     <section className="sidebar">
       <div className="sidebar-content">
@@ -12,6 +12,11 @@ const SidebarNav = () => {
           to="/dashboard"
           className="nav-link"
           onClick={() => setCloseSideBar(false)}
+          style={
+            token
+              ? {}
+              : { pointerEvents: "none", color: "gray", textDecoration: "none" }
+          }
         >
           <i className="bi bi-grid-1x2 me-2"></i>
           Dashboard
@@ -20,7 +25,11 @@ const SidebarNav = () => {
         <NavLink
           to="/allProject"
           className="nav-link"
-          onClick={() => setCloseSideBar(false)}
+          onClick={() => setCloseSideBar(false)} style={
+            token
+              ? {}
+              : { pointerEvents: "none", color: "gray", textDecoration: "none" }
+          }
         >
           <i className="bi bi-grid-3x3-gap me-2"></i>
           Project
@@ -29,7 +38,11 @@ const SidebarNav = () => {
         <NavLink
           to="/allTeam"
           className="nav-link"
-          onClick={() => setCloseSideBar(false)}
+          onClick={() => setCloseSideBar(false)} style={
+            token
+              ? {}
+              : { pointerEvents: "none", color: "gray", textDecoration: "none" }
+          }
         >
           <i className="bi bi-people me-2"></i>
           Team
@@ -38,7 +51,11 @@ const SidebarNav = () => {
         <NavLink
           to="/reports"
           className="nav-link"
-          onClick={() => setCloseSideBar(false)}
+          onClick={() => setCloseSideBar(false)} style={
+            token
+              ? {}
+              : { pointerEvents: "none", color: "gray", textDecoration: "none" }
+          }
         >
           <i className="bi bi-bar-chart me-2"></i>
           Reports
@@ -47,11 +64,19 @@ const SidebarNav = () => {
         <NavLink
           to="/allTask"
           className="nav-link"
-          onClick={() => setCloseSideBar(false)}
+          onClick={() => setCloseSideBar(false)} style={
+            token
+              ? {}
+              : { pointerEvents: "none", color: "gray", textDecoration: "none" }
+          }
         >
           <i className="bi bi-person-workspace me-2"></i>
           Task
         </NavLink>
+
+        {token ? <div>
+          <button onClick = {() => {logout()}}>Log Out</button>
+        </div> : null}
       </div>
     </section>
   );
