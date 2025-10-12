@@ -29,6 +29,9 @@
   font-weight: bold;
   color: var(--sidebar-link);
 }
+.logout-link:hover{
+color: #f84949
+}
 
 @media (max-width: 768px) {
   .sidebar {

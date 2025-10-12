@@ -3,7 +3,7 @@ import SidebarNav from "./components/SidebarNav/SidebarNav";
 import { useContext, useEffect } from "react";
 import WorklyContext from "./contexts/worklyContext";
 import { Outlet } from "react-router-dom";
-import Dashboard from "./pages/Dashboard/Dashboard";
+// import Dashboard from "./pages/Dashboard/Dashboard";
 import { useNavigate, useLocation } from "react-router-dom";
 import worklyLogo from "./assets/worklyLogo.jpeg";
 
@@ -12,21 +12,35 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // useEffect(() => {
+  //   const storedToken = localStorage.getItem("adminToken");
+  //   if (!storedToken) {
+  //     navigate("/login");
+  //     setToken(null)
+  //   } else {
+  //     if (location.pathname === "/") {
+  //       navigate("/dashboard");
+  //     }else{
+  //       navigate(location)
+  //     }
+  //     setToken(storedToken)
+  //   }
+  // }, [navigate, setToken]);
+
   useEffect(() => {
-    const storedToken = localStorage.getItem("adminToken");
-    console.log(storedToken)
-    if (!storedToken) {
+  const storedToken = localStorage.getItem("adminToken");
+  if (!storedToken) {
+   if (location.pathname !== "/signup" && location.pathname !== "/login") {
       navigate("/login");
-      setToken(null)
-    } else {
-      if (location.pathname === "/") {
-        navigate("/dashboard");
-      }else{
-        navigate(location)
-      }
-      setToken(storedToken)
+      setToken(null);
     }
-  }, [navigate, setToken]);
+  } else {
+    if (location.pathname === "/") {
+      navigate("/dashboard");
+    }
+    setToken(storedToken);
+  }
+}, [navigate, setToken, location.pathname]);
 
   const { closeSideBar, setCloseSideBar } = useContext(WorklyContext);
 

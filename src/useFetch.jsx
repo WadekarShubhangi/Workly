@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 
-const useFetch = (url) => {
+const useFetch = (url, options = {}) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-
   const run = async () => {
+    if (!url) return;
     try {
+     
       setLoading(true);
       const token = localStorage.getItem("adminToken");
       const headers = { "Content-Type": "application/json" };
@@ -14,9 +15,11 @@ const useFetch = (url) => {
         headers.Authorization = `Bearer ${token}`;
       }
 
-      const response = await fetch(url, { headers });
+      const response = await fetch(url,{ ...options, headers });
       if (!response.ok) {
-        throw new Error("Failed to fetch data");
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || "Failed to fetch data");
+      
       }
 
       const result = await response.json();
@@ -30,10 +33,10 @@ const useFetch = (url) => {
   };
 
 useEffect(() => {
-  const storedToken = localStorage.getItem("adminToken");
-  if (storedToken) {
+  // const storedToken = localStorage.getItem("adminToken");
+  // if (storedToken) {
     run();
-  }
+  // }
 }, [url]);
 
 

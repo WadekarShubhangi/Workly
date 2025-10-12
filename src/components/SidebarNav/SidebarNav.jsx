@@ -8,6 +8,11 @@ const SidebarNav = () => {
     <section className="sidebar">
       <div className="sidebar-content">
         <h4 className="brand">Workly</h4>
+
+        {token ? 
+        <NavLink className="nav-link" to="/profile" onClick={() => setCloseSideBar(false)}>
+           <i className="bi bi-person-circle me-2"></i>Profile
+        </NavLink> : null}
         <NavLink
           to="/dashboard"
           className="nav-link"
@@ -75,7 +80,7 @@ const SidebarNav = () => {
         </NavLink>
 
         {token ? <div>
-          <button onClick = {() => {logout()}}>Log Out</button>
+          <button onClick = {() => {logout()}} className="nav-link logout-link"> <i className="bi bi-box-arrow-right me-2"></i>Log Out</button>
         </div> : null}
       </div>
     </section>

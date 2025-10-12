@@ -4,18 +4,16 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "./Login.css";
 import { useContext } from "react";
 import WorklyContext from "../../contexts/worklyContext";
-import { Link , useNavigate} from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
-
   const {
     showPassword,
     setShowPassword,
     loginUser,
-    loginData, loginHandleChange
-  
+    loginData,
+    loginHandleChange,
   } = useContext(WorklyContext);
 
   return (
@@ -29,14 +27,14 @@ const Login = () => {
         <form
           className="text-start"
           onSubmit={(e) => {
-            loginUser(e);
-            navigate("/dashboard")
+            loginUser(e, navigate);
           }}
         >
           <div className="mb-3">
             <label className="form-label fw-semibold">Email</label>
             <input
-              type="email" name="email"
+              type="email"
+              name="email"
               placeholder="Enter your email"
               className="form-control"
               value={loginData.email}
@@ -48,7 +46,9 @@ const Login = () => {
             <label className="form-label fw-semibold">Password</label>
             <input
               type={showPassword ? "text" : "password"}
-              placeholder="Password" name="password"
+              placeholder="Password"
+              name="password"
+              autoComplete="off"
               className="form-control pe-5"
               value={loginData.password}
               onChange={(e) => loginHandleChange(e)}
